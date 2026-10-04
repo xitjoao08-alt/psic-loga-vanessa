@@ -686,7 +686,18 @@ footer {
     .card {
         padding: 28px;
     }
+.fade-element {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
 
+.fade-element.show {
+    opacity: 1;
+    transform: translateY(0);
+}
     .contact-card-inner {
         padding: 35px 25px;
     }
