@@ -1,46 +1,74 @@
-// Ano automático
-document.getElementById("year").textContent =
-    new Date().getFullYear();
+// ==============================
+// ANO DO RODAPÉ
+// ==============================
+
+const year = document.getElementById("year");
+
+if (year) {
+    year.textContent = new Date().getFullYear();
+}
 
 
+// ==============================
 // MENU MOBILE
-const menuBtn = document.getElementById("menuBtn");
-const menu = document.getElementById("menu");
+// ==============================
 
-menuBtn.addEventListener("click", () => {
+const menuButton = document.getElementById("menuButton");
+const navigation = document.getElementById("navigation");
 
-    menu.classList.toggle("active");
+if (menuButton && navigation) {
 
-    if (menu.classList.contains("active")) {
-        menuBtn.textContent = "✕";
-    } else {
-        menuBtn.textContent = "☰";
-    }
+    menuButton.addEventListener("click", () => {
 
-});
+        navigation.classList.toggle("active");
 
+        if (navigation.classList.contains("active")) {
 
-// FECHAR MENU AO CLICAR
-document.querySelectorAll("#menu a").forEach(link => {
+            menuButton.textContent = "✕";
 
-    link.addEventListener("click", () => {
+        } else {
 
-        menu.classList.remove("active");
-        menuBtn.textContent = "☰";
+            menuButton.textContent = "☰";
+
+        }
 
     });
 
-});
+
+    const links = navigation.querySelectorAll("a");
+
+    links.forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            navigation.classList.remove("active");
+
+            menuButton.textContent = "☰";
+
+        });
+
+    });
+
+}
 
 
-// ANIMAÇÕES
+// ==============================
+// ANIMAÇÃO AO ROLAR
+// ==============================
+
+const animatedElements = document.querySelectorAll(
+    ".area-card, .book-card, .about-card, .about-text, .contact-box"
+);
+
 const observer = new IntersectionObserver(
-    (entries) => {
+    entries => {
 
         entries.forEach(entry => {
 
             if (entry.isIntersecting) {
-                entry.target.classList.add("show");
+
+                entry.target.classList.add("visible");
+
             }
 
         });
@@ -52,14 +80,10 @@ const observer = new IntersectionObserver(
 );
 
 
-document
-    .querySelectorAll(
-        ".card, .product, .section-image, .section-text, .contact-card"
-    )
-    .forEach(element => {
+animatedElements.forEach(element => {
 
-        element.classList.add("fade-element");
+    element.classList.add("animate");
 
-        observer.observe(element);
+    observer.observe(element);
 
-    });
+});
